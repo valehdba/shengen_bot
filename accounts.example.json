@@ -1,0 +1,16 @@
+[
+  {
+    "name": "primary",
+    "email": "you@example.com",
+    "session_path": "sessions/primary.json",
+    "enabled": true,
+    "notes": "Main account — used first"
+  },
+  {
+    "name": "backup",
+    "email": "you+backup@example.com",
+    "session_path": "sessions/backup.json",
+    "enabled": false,
+    "notes": "Second account for redundancy"
+  }
+]

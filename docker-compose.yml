@@ -1,0 +1,28 @@
+services:
+  bot:
+    build: .
+    container_name: shengen_bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./sessions:/app/sessions
+      - ./accounts.json:/app/accounts.json:ro
+    command: python -m src.bot
+
+  dashboard:
+    build: .
+    container_name: shengen_dashboard
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${DASHBOARD_PORT:-8000}:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./sessions:/app/sessions:ro
+      - ./accounts.json:/app/accounts.json:ro
+    command: python -m src.dashboard
+    depends_on:
+      - bot
